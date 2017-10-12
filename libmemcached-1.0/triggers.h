@@ -54,10 +54,12 @@ typedef memcached_return_t (*memcached_trigger_key_fn)(const memcached_st *ptr,
 typedef memcached_return_t (*memcached_trigger_delete_key_fn)(const memcached_st *ptr,
                                                               const char *key, size_t key_length);
 
+
 typedef memcached_return_t (*memcached_dump_fn)(const memcached_st *ptr,
                                                 const char *key,
-                                                size_t key_length,
+                                                size_t key_length, time_t expire_time,
                                                 void *context);
+
 
 #ifdef __cplusplus
 }

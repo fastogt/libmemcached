@@ -51,7 +51,7 @@ using namespace libtest;
 /* Dump each server's keys */
 static memcached_return_t print_keys_callback(const memcached_st *,
                                               const char *key,
-                                              size_t key_length,
+                                              size_t key_length, time_t ,
                                               void *)
 {
 
@@ -163,7 +163,7 @@ test_return_t print_keys_by_server(memcached_st *memc)
 
 static memcached_return_t callback_dump_counter(const memcached_st *ptr,
                                                 const char *key,
-                                                size_t key_length,
+                                                size_t key_length, time_t ,
                                                 void *context)
 {
   (void)ptr; (void)key; (void)key_length;

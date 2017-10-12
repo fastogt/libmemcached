@@ -157,7 +157,11 @@ static memcached_return_t connect_poll(memcached_instance_st* server, const int 
     }
     assert(fds[0].revents & POLLOUT);
 
+    #ifdef __MINGW32__
+    if (fds[0].revents & POLLOUT and connection_error == EINPROGRESS or connection_error == WSAEWOULDBLOCK)
+    #else
     if (fds[0].revents & POLLOUT and connection_error == EINPROGRESS)
+    #endif
     {
       int err;
       socklen_t len= sizeof(err);
@@ -585,6 +589,9 @@ static memcached_return_t network_connect(memcached_instance_st* server)
     case EAGAIN:
 #if EWOULDBLOCK != EAGAIN
     case EWOULDBLOCK:
+#endif
+#ifdef __MINGW32__
+    case  WSAEWOULDBLOCK:
 #endif
     case EINPROGRESS: // nonblocking mode - first return
     case EALREADY: // nonblocking mode - subsequent returns

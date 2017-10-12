@@ -98,6 +98,9 @@ static bool repack_input_buffer(memcached_instance_st* instance)
 #if EWOULDBLOCK != EAGAIN
           case EWOULDBLOCK:
 #endif
+#ifdef __MINGW32__
+    case  WSAEWOULDBLOCK:
+#endif
           case EAGAIN:
 #ifdef __linux
           case ERESTART:
@@ -358,6 +361,9 @@ static bool io_flush(memcached_instance_st* instance,
 #if EWOULDBLOCK != EAGAIN
       case EWOULDBLOCK:
 #endif
+#ifdef __MINGW32__
+    case  WSAEWOULDBLOCK:
+#endif
       case EAGAIN:
         {
           /*
@@ -435,6 +441,9 @@ static memcached_return_t _io_fill(memcached_instance_st* instance)
       case ETIMEDOUT: // OSX
 #if EWOULDBLOCK != EAGAIN
       case EWOULDBLOCK:
+#endif
+#ifdef __MINGW32__
+    case  WSAEWOULDBLOCK:
 #endif
       case EAGAIN:
 #ifdef __linux
@@ -573,6 +582,9 @@ memcached_return_t memcached_io_slurp(memcached_instance_st* instance)
       case ETIMEDOUT: // OSX
 #if EWOULDBLOCK != EAGAIN
       case EWOULDBLOCK:
+#endif
+#ifdef __MINGW32__
+    case  WSAEWOULDBLOCK:
 #endif
       case EAGAIN:
 #ifdef __linux

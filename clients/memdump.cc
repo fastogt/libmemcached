@@ -45,7 +45,7 @@ static char *opt_passwd;
 
 /* Print the keys and counter how many were found */
 static memcached_return_t key_printer(const memcached_st *,
-                                      const char *key, size_t key_length,
+                                      const char *key, size_t key_length, time_t ,
                                       void *)
 {
   std::cout.write(key, key_length);

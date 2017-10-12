@@ -51,6 +51,7 @@ using namespace libtest;
 static memcached_return_t callback_dump_counter(const memcached_st *,
                                                 const char*, // key,
                                                 size_t, // length,
+                                                time_t, // expire_time,
                                                 void *context)
 {
   size_t *counter= (size_t *)context;
