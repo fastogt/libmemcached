@@ -17,7 +17,6 @@ AC_INIT([libmemcached],VERSION_NUMBER,[http://libmemcached.org/])
 AC_PROG_CC([cc gcc clang])
 AC_PROG_CXX([c++ g++ clang++])
 
-AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
 AC_CANONICAL_HOST
