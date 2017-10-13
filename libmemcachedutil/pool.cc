@@ -42,6 +42,7 @@
 #include <cerrno>
 #include <pthread.h>
 #include <memory>
+#include <time.h>
 
 struct memcached_pool_st
 {
